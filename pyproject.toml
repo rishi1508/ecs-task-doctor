@@ -45,9 +45,9 @@ dev = [
 ecs-doctor = "ecs_doctor.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/your-org/ecs-task-doctor"
-Repository = "https://github.com/your-org/ecs-task-doctor"
-Issues = "https://github.com/your-org/ecs-task-doctor/issues"
+Homepage = "https://github.com/rishi1508/ecs-task-doctor"
+Repository = "https://github.com/rishi1508/ecs-task-doctor"
+Issues = "https://github.com/rishi1508/ecs-task-doctor/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/ecs_doctor"]
