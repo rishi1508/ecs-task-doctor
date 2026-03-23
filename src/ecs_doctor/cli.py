@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import sys
 
+import boto3
 import click
 
 from ecs_doctor import __version__
@@ -24,6 +25,7 @@ def main() -> None:
 @click.option("--service", default=None, help="ECS service name.")
 @click.option("--task", default=None, help="Specific task ARN to diagnose.")
 @click.option("--region", default=None, help="AWS region override.")
+@click.option("--profile", default=None, help="AWS CLI profile to use.")
 @click.option(
     "--format",
     "output_format",
@@ -36,9 +38,13 @@ def diagnose(
     service: str | None,
     task: str | None,
     region: str | None,
+    profile: str | None,
     output_format: str,
 ) -> None:
     """Diagnose a specific ECS service or task."""
+    if profile:
+        boto3.setup_default_session(profile_name=profile)
+
     if not service and not task:
         click.echo("Error: either --service or --task is required.", err=True)
         sys.exit(1)
@@ -65,6 +71,7 @@ def diagnose(
 @main.command()
 @click.option("--cluster", required=True, help="ECS cluster name or ARN.")
 @click.option("--region", default=None, help="AWS region override.")
+@click.option("--profile", default=None, help="AWS CLI profile to use.")
 @click.option(
     "--format",
     "output_format",
@@ -72,8 +79,11 @@ def diagnose(
     default="console",
     help="Output format.",
 )
-def scan(cluster: str, region: str | None, output_format: str) -> None:
+def scan(cluster: str, region: str | None, profile: str | None, output_format: str) -> None:
     """Scan all services in a cluster and diagnose unhealthy ones."""
+    if profile:
+        boto3.setup_default_session(profile_name=profile)
+
     try:
         reports = scan_cluster(cluster=cluster, region=region)
     except Exception as e:
@@ -97,6 +107,7 @@ def scan(cluster: str, region: str | None, output_format: str) -> None:
 @main.command()
 @click.option("--cluster", required=True, help="ECS cluster name or ARN.")
 @click.option("--region", default=None, help="AWS region override.")
+@click.option("--profile", default=None, help="AWS CLI profile to use.")
 @click.option(
     "--format",
     "output_format",
@@ -104,8 +115,11 @@ def scan(cluster: str, region: str | None, output_format: str) -> None:
     default="console",
     help="Output format.",
 )
-def health(cluster: str, region: str | None, output_format: str) -> None:
+def health(cluster: str, region: str | None, profile: str | None, output_format: str) -> None:
     """Quick health check for all services in a cluster."""
+    if profile:
+        boto3.setup_default_session(profile_name=profile)
+
     try:
         summaries = get_cluster_health(cluster=cluster, region=region)
     except Exception as e:

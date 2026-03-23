@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ecs-task-doctor"
-version = "0.1.0"
+version = "0.1.1"
 description = "Diagnose why your ECS tasks fail to start or keep crashing"
 readme = "README.md"
 license = "MIT"
