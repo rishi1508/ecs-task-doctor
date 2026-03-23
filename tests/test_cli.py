@@ -6,8 +6,8 @@ import boto3
 from click.testing import CliRunner
 from moto import mock_aws
 
-from ecs_doctor.cli import main
 from ecs_doctor import __version__
+from ecs_doctor.cli import main
 
 
 @mock_aws
