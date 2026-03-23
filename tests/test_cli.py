@@ -7,6 +7,7 @@ from click.testing import CliRunner
 from moto import mock_aws
 
 from ecs_doctor.cli import main
+from ecs_doctor import __version__
 
 
 @mock_aws
@@ -205,4 +206,4 @@ def test_version_flag(aws_credentials):
     runner = CliRunner()
     result = runner.invoke(main, ["--version"])
     assert result.exit_code == 0
-    assert "0.1.0" in result.output
+    assert __version__ in result.output
