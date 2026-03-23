@@ -78,4 +78,6 @@ jobs:
         run: bandit -r src/ -c pyproject.toml || bandit -r src/
 
       - name: Dependency audit with pip-audit
-        run: pip-audit --strict --desc --skip-editable
+        run: |
+          pip uninstall -y ecs-task-doctor
+          pip-audit --strict --desc

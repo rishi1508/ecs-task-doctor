@@ -76,7 +76,8 @@ def _generate_recommendations(checks: list[CheckResult]) -> list[Recommendation]
                 recs.append(
                     Recommendation(
                         priority=priority,
-                        text="Create the missing IAM role or fix the role ARN in the task definition",
+                        text="Create the missing IAM role or "
+                        "fix the role ARN in the task definition",
                     )
                 )
                 priority += 1
