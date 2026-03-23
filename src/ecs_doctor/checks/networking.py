@@ -106,8 +106,7 @@ def check_networking(
                         name="Networking",
                         severity=Severity.WARNING,
                         message=(
-                            f"Subnet {subnet_id} ({az}) has only "
-                            f"{available_ips} available IPs"
+                            f"Subnet {subnet_id} ({az}) has only {available_ips} available IPs"
                         ),
                     )
                 )

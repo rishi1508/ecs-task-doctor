@@ -132,9 +132,7 @@ def test_logs_with_error_patterns(aws_credentials):
 
     # Create log group and stream with error messages
     logs_client.create_log_group(logGroupName="/ecs/test-task")
-    logs_client.create_log_stream(
-        logGroupName="/ecs/test-task", logStreamName="ecs/app/abc123"
-    )
+    logs_client.create_log_stream(logGroupName="/ecs/test-task", logStreamName="ecs/app/abc123")
     logs_client.put_log_events(
         logGroupName="/ecs/test-task",
         logStreamName="ecs/app/abc123",
@@ -192,9 +190,7 @@ def test_logs_clean(aws_credentials):
     )
 
     logs_client.create_log_group(logGroupName="/ecs/test-task")
-    logs_client.create_log_stream(
-        logGroupName="/ecs/test-task", logStreamName="ecs/app/abc123"
-    )
+    logs_client.create_log_stream(logGroupName="/ecs/test-task", logStreamName="ecs/app/abc123")
     logs_client.put_log_events(
         logGroupName="/ecs/test-task",
         logStreamName="ecs/app/abc123",

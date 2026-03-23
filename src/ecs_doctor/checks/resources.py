@@ -135,9 +135,7 @@ def check_resources(
     # Check cluster capacity for EC2 launch type
     if not is_fargate:
         try:
-            ci_resp = ecs_client.list_container_instances(
-                cluster=cluster, status="ACTIVE"
-            )
+            ci_resp = ecs_client.list_container_instances(cluster=cluster, status="ACTIVE")
             ci_arns = ci_resp.get("containerInstanceArns", [])
 
             if not ci_arns:

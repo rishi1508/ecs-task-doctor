@@ -40,8 +40,13 @@ def test_diagnose_with_service(aws_credentials):
     result = runner.invoke(
         main,
         [
-            "diagnose", "--cluster", "test-cluster",
-            "--service", "test-service", "--region", "us-east-1",
+            "diagnose",
+            "--cluster",
+            "test-cluster",
+            "--service",
+            "test-service",
+            "--region",
+            "us-east-1",
         ],
     )
     assert result.exit_code == 0
@@ -72,10 +77,14 @@ def test_diagnose_json_format(aws_credentials):
         main,
         [
             "diagnose",
-            "--cluster", "test-cluster",
-            "--service", "test-service",
-            "--format", "json",
-            "--region", "us-east-1",
+            "--cluster",
+            "test-cluster",
+            "--service",
+            "test-service",
+            "--format",
+            "json",
+            "--region",
+            "us-east-1",
         ],
     )
     assert result.exit_code == 0
@@ -106,10 +115,14 @@ def test_diagnose_markdown_format(aws_credentials):
         main,
         [
             "diagnose",
-            "--cluster", "test-cluster",
-            "--service", "test-service",
-            "--format", "markdown",
-            "--region", "us-east-1",
+            "--cluster",
+            "test-cluster",
+            "--service",
+            "test-service",
+            "--format",
+            "markdown",
+            "--region",
+            "us-east-1",
         ],
     )
     assert result.exit_code == 0

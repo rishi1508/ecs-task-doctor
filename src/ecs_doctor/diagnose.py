@@ -30,55 +30,71 @@ def _generate_recommendations(checks: list[CheckResult]) -> list[Recommendation]
     for check in checks:
         if check.severity == Severity.CRITICAL:
             if "OOM" in check.message or "memory" in check.message.lower():
-                recs.append(Recommendation(
-                    priority=priority,
-                    text="Increase container memory limit in the task definition",
-                ))
+                recs.append(
+                    Recommendation(
+                        priority=priority,
+                        text="Increase container memory limit in the task definition",
+                    )
+                )
                 priority += 1
             elif "image" in check.message.lower() or "pull" in check.message.lower():
-                recs.append(Recommendation(
-                    priority=priority,
-                    text=(
-                        "Verify the image URI exists and the execution role"
-                        " has ECR pull permissions"
-                    ),
-                ))
+                recs.append(
+                    Recommendation(
+                        priority=priority,
+                        text=(
+                            "Verify the image URI exists and the execution role"
+                            " has ECR pull permissions"
+                        ),
+                    )
+                )
                 priority += 1
             elif "crash loop" in check.message.lower():
-                recs.append(Recommendation(
-                    priority=priority,
-                    text="Check application logs for the root cause of repeated crashes",
-                ))
+                recs.append(
+                    Recommendation(
+                        priority=priority,
+                        text="Check application logs for the root cause of repeated crashes",
+                    )
+                )
                 priority += 1
             elif "capacity" in check.message.lower() or "place a task" in check.message.lower():
-                recs.append(Recommendation(
-                    priority=priority,
-                    text="Scale up cluster capacity or switch to Fargate",
-                ))
+                recs.append(
+                    Recommendation(
+                        priority=priority,
+                        text="Scale up cluster capacity or switch to Fargate",
+                    )
+                )
                 priority += 1
             elif "subnet" in check.message.lower() and "ip" in check.message.lower():
-                recs.append(Recommendation(
-                    priority=priority,
-                    text="Add more subnets or use subnets with available IP addresses",
-                ))
+                recs.append(
+                    Recommendation(
+                        priority=priority,
+                        text="Add more subnets or use subnets with available IP addresses",
+                    )
+                )
                 priority += 1
             elif "role" in check.message.lower():
-                recs.append(Recommendation(
-                    priority=priority,
-                    text="Create the missing IAM role or fix the role ARN in the task definition",
-                ))
+                recs.append(
+                    Recommendation(
+                        priority=priority,
+                        text="Create the missing IAM role or fix the role ARN in the task definition",
+                    )
+                )
                 priority += 1
             elif "exit" in check.message.lower():
-                recs.append(Recommendation(
-                    priority=priority,
-                    text="Check application logs for the cause of the non-zero exit code",
-                ))
+                recs.append(
+                    Recommendation(
+                        priority=priority,
+                        text="Check application logs for the cause of the non-zero exit code",
+                    )
+                )
                 priority += 1
             else:
-                recs.append(Recommendation(
-                    priority=priority,
-                    text=f"Investigate: {check.message}",
-                ))
+                recs.append(
+                    Recommendation(
+                        priority=priority,
+                        text=f"Investigate: {check.message}",
+                    )
+                )
                 priority += 1
 
     return recs

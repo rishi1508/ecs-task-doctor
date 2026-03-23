@@ -78,8 +78,6 @@ def test_detect_crash_loop_no_stops():
     """No crash loop if no stop events."""
     from datetime import datetime, timezone
 
-    events = [
-        {"message": "has reached a steady state", "createdAt": datetime.now(timezone.utc)}
-    ]
+    events = [{"message": "has reached a steady state", "createdAt": datetime.now(timezone.utc)}]
     result = _detect_crash_loop(events)
     assert result is None
